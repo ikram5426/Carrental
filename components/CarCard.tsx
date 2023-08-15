@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react"
 import { CarProps } from "@/types"
+import { generateCarImageUrl } from "@/utils"
 interface CarCardProps {
   car: CarProps
 }
@@ -15,7 +16,6 @@ const CarCard = ({ car }: CarCardProps) => {
   const carRent = calculateCarRent(city_mpg, year)
   return (
     <div className="car-card group">
-
       <div className="car-card__content">
         <h2 className="car-card__content-title">
           {make} {model}
@@ -31,7 +31,7 @@ const CarCard = ({ car }: CarCardProps) => {
         </span>
       </p>
       <div className='relative w-full h-40 my-3 object-contain'>
-        <Image src='/hero.png' alt="car model" fill priority className="object-contain"></Image>
+        <Image src={generateCarImageUrl(car)} alt="car model" fill priority className="object-contain"></Image>
 
       </div>
       <div className="relative w-full flex mt-2">

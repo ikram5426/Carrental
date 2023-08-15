@@ -1,11 +1,22 @@
 import { Hero, CustomFilter, SearchBar, CarCard } from "@/components";
+import { SearchParamsProps } from "@/types";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
 
-export default async function Home() {
-  const allCars = await fetchCars()
+export default async function Home({searchParams}) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || '',
+    year: searchParams.year
+      || 2023,
+    fuel: searchParams.fuel || '',
+    limit: searchParams.limit || '', 
+    model:searchParams.model||''
+  })
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
+
+    
+
   return (
     <main className='overflow-hidden'>
       <Hero />
