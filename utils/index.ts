@@ -1,7 +1,7 @@
 import { CarProps, SearchParamsProps } from "@/types";
 
-export async function fetchCars(filters: SearchParamsProps) { 
-  const {manufacturer,year,fuel,limit,model}=filters
+export async function fetchCars(filters: SearchParamsProps) {
+  const { manufacturer, year, fuel, limit, model } = filters;
   const headers = {
     "X-RapidAPI-Key": "9027e2a660msh070d6fd4729c9cdp10aa25jsn0cfcc6476b0d",
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
@@ -33,7 +33,6 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL("https://cdn.imagin.studio/getimage");
   const { make, year, model } = car;
-
   url.searchParams.append("customer", "hrjavascript-mastery");
   url.searchParams.append("make", make);
   url.searchParams.append("modelFamily", model.split(" ")[0]);
@@ -41,6 +40,14 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   url.searchParams.append("modelYear", `${year}`);
   url.searchParams.append("anlge", `${angle}`);
 
-  return `${url}`
+  return `${url}`;
 };
- 
+
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  searchParams.set(type, value);
+
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+  return newPathname;
+};
