@@ -49,7 +49,8 @@ export interface OptionProps{
 
 export interface CustomFilterProps{
   title: string;
-  options:OptionProps[]
+  options: OptionProps[];
+  setFilter:any
 }
  
 export interface ShowMoreProps{
